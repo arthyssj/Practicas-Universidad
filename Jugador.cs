@@ -24,5 +24,7 @@ namespace JuegoLaberinto
             if (direccion == "izquierda") x -= Velocidad;
             if (direccion == "derecha") x += Velocidad;
         }
+        
+
     }
 }
