@@ -15,6 +15,7 @@ namespace JuegoLaberinto
         }
         public void Dibujar(Graphics g)
         {
+            //color del jugador
             g.FillRectangle(Brushes.Red, Area());
         }
         public void Mover(string direccion)

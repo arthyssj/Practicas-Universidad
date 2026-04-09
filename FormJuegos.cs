@@ -16,6 +16,8 @@ namespace JuegoLaberinto
         public FormJuego()
         {
             InitializeComponent();
+            using var ms = new MemoryStream(Properties.Resources.icon);
+            this.Icon = new Icon(ms);
             this.KeyPreview = true;
             this.BackColor = Color.Aqua;
             // configurar tiempo y timer
@@ -25,7 +27,6 @@ namespace JuegoLaberinto
             {
                 tmrCronometro.Interval = 1000; // 1 segundo
                 tmrCronometro.Enabled = true;
-                tmrCronometro.Tick += tmrCronometro_Tick;
             }
             jugador.x = 50;
             jugador.y = 50;
@@ -79,7 +80,7 @@ namespace JuegoLaberinto
             {
                 if (nivelActual < 3)
                 {
-                    nivelActual++; 
+                    nivelActual++;
                     MessageBox.Show($"¡Felicidades! Pasaste al Nivel {nivelActual}");
                     CargarNivel();
                 }
@@ -107,22 +108,23 @@ namespace JuegoLaberinto
         private void ResetGame()
         {
             // reiniciar estado del juego
-            vidas = 3;
-            jugador.x = 50;
-            jugador.y = 50;
-            tiempo = tiempoInicial;
-            nivelActual = 1;
-            CargarNivel();
+            tmrCronometro.Stop();
+            FormMenu formMenu = new FormMenu();
+            formMenu.Show();
+            this.Close();
         }
 
         private void tmrCronometro_Tick(object sender, EventArgs e)
         {
-            // disminuir tiempo cada segundo
             tiempo--;
+
             if (tiempo <= 0)
             {
-                // tiempo agotado: perder vida y reiniciar nivel
+                // 1. DETENER EL RELOJ DE INMEDIATO
+                tmrCronometro.Stop();
+
                 vidas--;
+
                 if (vidas <= 0)
                 {
                     MessageBox.Show("Game Over");
@@ -131,6 +133,13 @@ namespace JuegoLaberinto
                 else
                 {
                     ResetLevel();
+                }
+
+                // 2. REINICIAR EL RELOJ
+                // Solo lo encendemos de nuevo si el juego no ha terminado
+                if (vidas > 0)
+                {
+                    tmrCronometro.Start();
                 }
             }
             Invalidate();
@@ -151,7 +160,7 @@ namespace JuegoLaberinto
             switch (nivelActual)
             {
                 case 1:
-                    this.BackColor = Color.DarkGreen;
+                    this.BackColor = Color.DarkMagenta;
                     paredes.Add(new Rectangle(100, 0, 20, 400));
                     paredes.Add(new Rectangle(200, 50, 20, 400));
                     paredes.Add(new Rectangle(300, 0, 20, 400));
@@ -166,10 +175,10 @@ namespace JuegoLaberinto
                     this.BackColor = Color.DarkOrange;
                     var bounds = new Rectangle(0, 0, Math.Max(Width, 800), Math.Max(Height, 600));
                     // mover meta a otra posición más difícil de alcanzar y crear zona segura alrededor
-                    meta = new Rectangle(Math.Min(bounds.Width - 60, 720), 20, 40, 40);
+                    meta = new Rectangle(Math.Min(bounds.Width - 60, 720), 300, 40, 40);
                     var zonaSeguraMeta = meta;
                     zonaSeguraMeta.Inflate(50, 50);
-                    var generated = GenerateNonOverlappingRectangles(15, bounds, 30, 120, 30, 200, zonaSeguraMeta);
+                    var generated = GenerateNonOverlappingRectangles(15, bounds, 30, 120, 30, 100, zonaSeguraMeta);
                     foreach (var r in generated) paredes.Add(r);
                     jugador.x = 50;
                     jugador.y = 50;
@@ -234,5 +243,6 @@ namespace JuegoLaberinto
             return list;
         }
 
+       
     }
 }

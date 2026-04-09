@@ -44,10 +44,13 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(778, 544);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             KeyPreview = true;
             Margin = new Padding(2);
+            MaximizeBox = false;
             Name = "FormJuego";
-            Text = "Laverinto: Nivel 1";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "LABERINTO: EL JUEGO";
             ResumeLayout(false);
         }
 
