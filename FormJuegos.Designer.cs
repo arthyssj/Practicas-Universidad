@@ -35,7 +35,7 @@
             // tmrCronometro
             // 
             tmrCronometro.Enabled = true;
-            tmrCronometro.Interval = 10000;
+            tmrCronometro.Interval = 1000;
             tmrCronometro.Tick += tmrCronometro_Tick;
             // 
             // FormJuego

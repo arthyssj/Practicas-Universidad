@@ -4,11 +4,15 @@ namespace JuegoLaberinto
     public partial class FormJuego : Form
     {
         Jugador jugador = new Jugador();
+        Random rnd = new Random();
+        int nivelActual = 1;
         int vidas = 3;
         int tiempo;
-        const int tiempoInicial = 30;
+        const int tiempoInicial = 60;
         List<Rectangle> paredes = new List<Rectangle>();
         Rectangle meta;
+        //Campo random para todo el formulario
+
         public FormJuego()
         {
             InitializeComponent();
@@ -19,23 +23,15 @@ namespace JuegoLaberinto
             // si el Timer fue agregado en el diseñador, configurar intervalo y arrancarlo
             if (tmrCronometro != null)
             {
-                tmrCronometro.Interval = 2000; // 1 segundo
+                tmrCronometro.Interval = 1000; // 1 segundo
                 tmrCronometro.Enabled = true;
                 tmrCronometro.Tick += tmrCronometro_Tick;
             }
             jugador.x = 50;
             jugador.y = 50;
 
-            //crear paredes
-            paredes.Add(new Rectangle(100, 0, 20, 400));
-            paredes.Add(new Rectangle(200, 50, 20, 400));
-            paredes.Add(new Rectangle(300, 0, 20, 400));
-            paredes.Add(new Rectangle(400, 200, 20, 400));
-            paredes.Add(new Rectangle(500, 50, 20, 400));
-
-
-            //meta
-            meta = new Rectangle(700, 500, 40, 40);
+            // cargar el nivel actual (agrega paredes y posiciona la meta)
+            CargarNivel();
             this.Paint += FormJuego_Paint;
             this.KeyDown += FormJuego_KeyDown;
 
@@ -44,18 +40,19 @@ namespace JuegoLaberinto
         private void FormJuego_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
-            jugador.Dibujar(g);
             foreach (var pared in paredes)
             {
                 g.FillRectangle(Brushes.Black, pared);
             }
             g.FillRectangle(Brushes.Green, meta);
+
             // dibujar texto de vidas en la esquina superior izquierda
             using (var font = new Font("Arial", 10))
             {
                 g.DrawString($"Vidas: {vidas}", font, Brushes.White, new PointF(650, 15));
                 g.DrawString($"Tiempo: {tiempo}", font, Brushes.White, new PointF(650, 35));
             }
+            jugador.Dibujar(g);
         }
         public void FormJuego_KeyDown(object sender, KeyEventArgs e)
         {
@@ -68,7 +65,7 @@ namespace JuegoLaberinto
 
             if (ColisionPared())
             {
-                // perder una vida y regresar a la posición (50,50)
+                // perder una vida y regresar a la posición 
                 vidas--;
                 jugador.x = 50;
                 jugador.y = 50;
@@ -80,8 +77,17 @@ namespace JuegoLaberinto
             }
             if (jugador.Area().IntersectsWith(meta))
             {
-                MessageBox.Show("Ganaste!!!");
-
+                if (nivelActual < 3)
+                {
+                    nivelActual++; 
+                    MessageBox.Show($"¡Felicidades! Pasaste al Nivel {nivelActual}");
+                    CargarNivel();
+                }
+                else
+                {
+                    MessageBox.Show("¡HAS GANADO EL JUEGO COMPLETO!");
+                    ResetGame();
+                }
             }
             Invalidate();
         }
@@ -105,6 +111,8 @@ namespace JuegoLaberinto
             jugador.x = 50;
             jugador.y = 50;
             tiempo = tiempoInicial;
+            nivelActual = 1;
+            CargarNivel();
             Invalidate();
         }
 
@@ -135,7 +143,87 @@ namespace JuegoLaberinto
             jugador.x = 50;
             jugador.y = 50;
             tiempo = tiempoInicial;
+            CargarNivel();
             Invalidate();
+        }
+
+        private void CargarNivel()
+        {
+            paredes.Clear();
+            switch (nivelActual)
+            {
+                case 1:
+                    paredes.Add(new Rectangle(100, 0, 20, 400));
+                    paredes.Add(new Rectangle(200, 50, 20, 400));
+                    paredes.Add(new Rectangle(300, 0, 20, 400));
+                    paredes.Add(new Rectangle(400, 200, 20, 400));
+                    paredes.Add(new Rectangle(500, 50, 20, 400));
+                    meta = new Rectangle(700, 500, 40, 40);
+                    // velocidad por defecto en nivel 1
+                    jugador.Velocidad = 10;
+                    break;
+                case 2:
+                    // generar 10 rectángulos aleatorios que no se encimen
+                    var bounds = new Rectangle(0, 0, Math.Max(Width, 800), Math.Max(Height, 600));
+                    var generated = GenerateNonOverlappingRectangles(15, bounds, 30, 120, 30, 200);
+                    foreach (var r in generated) paredes.Add(r);
+                    // mover meta a otra posición más difícil de alcanzar
+                    meta = new Rectangle(Math.Min(bounds.Width - 60, 720), 20, 40, 40);
+                    jugador.x = 50;
+                    jugador.y = 50;
+                    // aumentar la velocidad del jugador para mayor dificultad
+                    jugador.Velocidad = 20;
+                    break;
+
+                case 3:
+                    this.BackColor = Color.DarkSlateBlue;
+                    var bounds3 = new Rectangle(0, 0, Math.Max(Width, 800), Math.Max(Height, 600));
+                    var generated3 = GenerateNonOverlappingRectangles(25, bounds3, 30, 150, 30, 250);
+
+                    foreach (var r in generated3) paredes.Add(r);
+                    meta = new Rectangle(400, 300, 30, 30);
+                    jugador.Velocidad = 30;
+                    break;
+                default:
+                    nivelActual = 1;
+                    CargarNivel();
+                    break;
+            }
+        }
+
+        // Genera n rectángulos no solapados dentro de un area dada
+        private List<Rectangle> GenerateNonOverlappingRectangles(int count, Rectangle area, int minW, int maxW, int minH, int maxH)
+        {
+            var list = new List<Rectangle>();
+            int attempts = 0;
+            while (list.Count < count && attempts < count * 200)
+            {
+                attempts++;
+                int w = rnd.Next(minW, maxW + 1);
+                int h = rnd.Next(minH, maxH + 1);
+                int x = rnd.Next(area.X, Math.Max(area.X, area.Right - w));
+                int y = rnd.Next(area.Y, Math.Max(area.Y, area.Bottom - h));
+                var candidate = new Rectangle(x, y, w, h);
+
+                // evitar que se empalme con la zona de inicio del jugador
+                var playerStart = new Rectangle(40, 40, 80, 80);
+                if (candidate.IntersectsWith(playerStart)) continue;
+
+                bool overlaps = false;
+                foreach (var r in list)
+                {
+                    if (r.IntersectsWith(candidate))
+                    {
+                        overlaps = true;
+                        break;
+                    }
+                }
+                if (!overlaps)
+                {
+                    list.Add(candidate);
+                }
+            }
+            return list;
         }
 
     }
