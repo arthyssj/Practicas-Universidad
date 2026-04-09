@@ -4,6 +4,7 @@ namespace JuegoLaberinto
     public partial class FormJuego : Form
     {
         Jugador jugador = new Jugador();
+        int vidas = 3;
         List<Rectangle> paredes = new List<Rectangle>();
         Rectangle meta;
         public FormJuego()
@@ -51,8 +52,15 @@ namespace JuegoLaberinto
 
             if(ColisionPared())
             {
-                jugador.x = xAnterior;
-                jugador.y = yAnterior;
+                // perder una vida y regresar a la posición (10,10)
+                vidas--;
+                jugador.x = 10;
+                jugador.y = 10;
+                if (vidas <= 0)
+                {
+                    MessageBox.Show("Game Over");
+                    ResetGame();
+                }
             }
             if (jugador.Area().IntersectsWith(meta))
             {
@@ -73,6 +81,14 @@ namespace JuegoLaberinto
         private void FormJuego_Load(object sender, EventArgs e)
         {
 
+        }
+        private void ResetGame()
+        {
+            // reiniciar estado del juego
+            vidas = 3;
+            jugador.x = 50;
+            jugador.y = 50;
+            Invalidate();
         }
     }
 }
