@@ -113,7 +113,6 @@ namespace JuegoLaberinto
             tiempo = tiempoInicial;
             nivelActual = 1;
             CargarNivel();
-            Invalidate();
         }
 
         private void tmrCronometro_Tick(object sender, EventArgs e)
@@ -144,7 +143,6 @@ namespace JuegoLaberinto
             jugador.y = 50;
             tiempo = tiempoInicial;
             CargarNivel();
-            Invalidate();
         }
 
         private void CargarNivel()
@@ -153,6 +151,7 @@ namespace JuegoLaberinto
             switch (nivelActual)
             {
                 case 1:
+                    this.BackColor = Color.DarkGreen;
                     paredes.Add(new Rectangle(100, 0, 20, 400));
                     paredes.Add(new Rectangle(200, 50, 20, 400));
                     paredes.Add(new Rectangle(300, 0, 20, 400));
@@ -164,11 +163,14 @@ namespace JuegoLaberinto
                     break;
                 case 2:
                     // generar 10 rectángulos aleatorios que no se encimen
+                    this.BackColor = Color.DarkOrange;
                     var bounds = new Rectangle(0, 0, Math.Max(Width, 800), Math.Max(Height, 600));
-                    var generated = GenerateNonOverlappingRectangles(15, bounds, 30, 120, 30, 200);
-                    foreach (var r in generated) paredes.Add(r);
-                    // mover meta a otra posición más difícil de alcanzar
+                    // mover meta a otra posición más difícil de alcanzar y crear zona segura alrededor
                     meta = new Rectangle(Math.Min(bounds.Width - 60, 720), 20, 40, 40);
+                    var zonaSeguraMeta = meta;
+                    zonaSeguraMeta.Inflate(50, 50);
+                    var generated = GenerateNonOverlappingRectangles(15, bounds, 30, 120, 30, 200, zonaSeguraMeta);
+                    foreach (var r in generated) paredes.Add(r);
                     jugador.x = 50;
                     jugador.y = 50;
                     // aumentar la velocidad del jugador para mayor dificultad
@@ -178,11 +180,15 @@ namespace JuegoLaberinto
                 case 3:
                     this.BackColor = Color.DarkSlateBlue;
                     var bounds3 = new Rectangle(0, 0, Math.Max(Width, 800), Math.Max(Height, 600));
-                    var generated3 = GenerateNonOverlappingRectangles(25, bounds3, 30, 150, 30, 250);
+                    meta = new Rectangle(700, 500, 60, 60);
+                    var zonaSeguraMeta3 = meta;
+                    zonaSeguraMeta3.Inflate(50, 50);
+                    var generated3 = GenerateNonOverlappingRectangles(20, bounds3, 30, 120, 30, 200, zonaSeguraMeta3);
 
                     foreach (var r in generated3) paredes.Add(r);
-                    meta = new Rectangle(400, 300, 30, 30);
                     jugador.Velocidad = 30;
+                    jugador.x = 50;
+                    jugador.y = 50;
                     break;
                 default:
                     nivelActual = 1;
@@ -192,7 +198,7 @@ namespace JuegoLaberinto
         }
 
         // Genera n rectángulos no solapados dentro de un area dada
-        private List<Rectangle> GenerateNonOverlappingRectangles(int count, Rectangle area, int minW, int maxW, int minH, int maxH)
+        private List<Rectangle> GenerateNonOverlappingRectangles(int count, Rectangle area, int minW, int maxW, int minH, int maxH, Rectangle? zonaSeguraMeta = null)
         {
             var list = new List<Rectangle>();
             int attempts = 0;
@@ -208,6 +214,8 @@ namespace JuegoLaberinto
                 // evitar que se empalme con la zona de inicio del jugador
                 var playerStart = new Rectangle(40, 40, 80, 80);
                 if (candidate.IntersectsWith(playerStart)) continue;
+                // evitar que se empalme con la zona segura alrededor de la meta si se proporcionó
+                if (zonaSeguraMeta.HasValue && candidate.IntersectsWith(zonaSeguraMeta.Value)) continue;
 
                 bool overlaps = false;
                 foreach (var r in list)
