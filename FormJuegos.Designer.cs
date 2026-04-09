@@ -29,12 +29,14 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            timer1 = new System.Windows.Forms.Timer(components);
+            tmrCronometro = new System.Windows.Forms.Timer(components);
             SuspendLayout();
             // 
-            // timer1
+            // tmrCronometro
             // 
-            timer1.Tick += timer1_Tick;
+            tmrCronometro.Enabled = true;
+            tmrCronometro.Interval = 10000;
+            tmrCronometro.Tick += tmrCronometro_Tick;
             // 
             // FormJuego
             // 
@@ -46,12 +48,11 @@
             Margin = new Padding(2);
             Name = "FormJuego";
             Text = "Laverinto: Nivel 1";
-            Paint += FormJuego_Paint_1;
             ResumeLayout(false);
         }
 
         #endregion
 
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer tmrCronometro;
     }
 }
