@@ -5,6 +5,8 @@ namespace JuegoLaberinto
     {
         Jugador jugador = new Jugador();
         int vidas = 3;
+        int tiempo;
+        const int tiempoInicial = 30;
         List<Rectangle> paredes = new List<Rectangle>();
         Rectangle meta;
         public FormJuego()
@@ -12,20 +14,27 @@ namespace JuegoLaberinto
             InitializeComponent();
             this.KeyPreview = true;
             this.BackColor = Color.Aqua;
-
-            jugador.x = 50; 
+            // configurar tiempo y timer
+            tiempo = tiempoInicial;
+            // si el Timer fue agregado en el diseñador, configurar intervalo y arrancarlo
+            if (timer1 != null)
+            {
+                timer1.Interval = 1000; // 1 segundo
+                timer1.Enabled = true;
+            }
+            jugador.x = 50;
             jugador.y = 50;
 
             //crear paredes
             paredes.Add(new Rectangle(100, 0, 20, 400));
-            paredes.Add(new Rectangle(200,50, 20, 400));
+            paredes.Add(new Rectangle(200, 50, 20, 400));
             paredes.Add(new Rectangle(300, 0, 20, 400));
             paredes.Add(new Rectangle(400, 200, 20, 400));
             paredes.Add(new Rectangle(500, 50, 20, 400));
-            
+
 
             //meta
-            meta = new Rectangle(700,500,40,40);
+            meta = new Rectangle(700, 500, 40, 40);
             this.Paint += FormJuego_Paint;
             this.KeyDown += FormJuego_KeyDown;
 
@@ -41,21 +50,21 @@ namespace JuegoLaberinto
             }
             g.FillRectangle(Brushes.Green, meta);
         }
-        public void FormJuego_KeyDown(object sender, KeyEventArgs e) 
+        public void FormJuego_KeyDown(object sender, KeyEventArgs e)
         {
             int xAnterior = jugador.x;
             int yAnterior = jugador.y;
-            if (e.KeyCode == Keys.Up)jugador.Mover("arriba");
-            if (e.KeyCode == Keys.Down)jugador.Mover("abajo");
-            if (e.KeyCode == Keys.Left)jugador.Mover("izquierda");
-            if (e.KeyCode == Keys.Right)jugador.Mover("derecha");
+            if (e.KeyCode == Keys.Up) jugador.Mover("arriba");
+            if (e.KeyCode == Keys.Down) jugador.Mover("abajo");
+            if (e.KeyCode == Keys.Left) jugador.Mover("izquierda");
+            if (e.KeyCode == Keys.Right) jugador.Mover("derecha");
 
-            if(ColisionPared())
+            if (ColisionPared())
             {
-                // perder una vida y regresar a la posición (10,10)
+                // perder una vida y regresar a la posición (50,50)
                 vidas--;
-                jugador.x = 10;
-                jugador.y = 10;
+                jugador.x = 50;
+                jugador.y = 50;
                 if (vidas <= 0)
                 {
                     MessageBox.Show("Game Over");
@@ -73,7 +82,7 @@ namespace JuegoLaberinto
         {
             foreach (var pared in paredes)
             {
-                if(jugador.Area().IntersectsWith(pared))
+                if (jugador.Area().IntersectsWith(pared))
                     return true;
             }
             return false;
@@ -88,6 +97,37 @@ namespace JuegoLaberinto
             vidas = 3;
             jugador.x = 50;
             jugador.y = 50;
+            tiempo = tiempoInicial;
+            Invalidate();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            // disminuir tiempo cada segundo
+            tiempo--;
+            if (tiempo <= 0)
+            {
+                // tiempo agotado: perder vida y reiniciar nivel
+                vidas--;
+                if (vidas <= 0)
+                {
+                    MessageBox.Show("Game Over");
+                    ResetGame();
+                }
+                else
+                {
+                    ResetLevel();
+                }
+            }
+            Invalidate();
+        }
+
+        private void ResetLevel()
+        {
+            // reinicia la posición del jugador y el tiempo del nivel
+            jugador.x = 50;
+            jugador.y = 50;
+            tiempo = tiempoInicial;
             Invalidate();
         }
     }
