@@ -46,6 +46,7 @@
             Margin = new Padding(2);
             Name = "FormJuego";
             Text = "Laverinto: Nivel 1";
+            Paint += FormJuego_Paint_1;
             ResumeLayout(false);
         }
 

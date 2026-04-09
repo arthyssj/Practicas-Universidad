@@ -6,7 +6,7 @@ namespace JuegoLaberinto
         Jugador jugador = new Jugador();
         int vidas = 3;
         int tiempo;
-        const int tiempoInicial = 30;
+        const int tiempoInicial = 1;
         List<Rectangle> paredes = new List<Rectangle>();
         Rectangle meta;
         public FormJuego()
@@ -19,7 +19,7 @@ namespace JuegoLaberinto
             // si el Timer fue agregado en el diseñador, configurar intervalo y arrancarlo
             if (timer1 != null)
             {
-                timer1.Interval = 1000; // 1 segundo
+                timer1.Interval = 1; // 1 segundo
                 timer1.Enabled = true;
             }
             jugador.x = 50;
@@ -49,6 +49,11 @@ namespace JuegoLaberinto
                 g.FillRectangle(Brushes.Black, pared);
             }
             g.FillRectangle(Brushes.Green, meta);
+            // dibujar texto de vidas en la esquina superior izquierda
+            using (var font = new Font("Arial", 14))
+            {
+                g.DrawString($"Vidas: {vidas}", font, Brushes.White, new PointF(15, 15));
+            }
         }
         public void FormJuego_KeyDown(object sender, KeyEventArgs e)
         {
@@ -130,5 +135,6 @@ namespace JuegoLaberinto
             tiempo = tiempoInicial;
             Invalidate();
         }
+
     }
 }
