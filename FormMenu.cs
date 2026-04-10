@@ -15,6 +15,7 @@ namespace JuegoLaberinto
     {
         SoundPlayer sonidoMenu = new SoundPlayer(Properties.Resources.gta_sound);
         System.Media.SoundPlayer sonidoIniciar = new SoundPlayer(Properties.Resources.efecto_iniciar);
+        System.Media.SoundPlayer sonidoInstrucciones = new SoundPlayer(Properties.Resources.efecto_iniciar);
         System.Media.SoundPlayer sonidoCancelar = new SoundPlayer(Properties.Resources.efecto_cancelar);
 
         public FormMenu()
@@ -44,6 +45,7 @@ namespace JuegoLaberinto
 
         private void btnIns_Click(object sender, EventArgs e)
         {
+            sonidoInstrucciones.Play();
             FormIns formIns = new FormIns();
             formIns.ShowDialog();
         }

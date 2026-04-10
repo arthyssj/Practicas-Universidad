@@ -64,6 +64,10 @@ namespace JuegoLaberinto
             foreach (var pared in paredes)
             {
                 g.FillRectangle(Brushes.Black, pared);
+                using(Pen bordePared = new Pen(Color.LightGreen, 1))
+                {
+                    g.DrawRectangle(bordePared, pared);
+                }
             }
             g.FillRectangle(Brushes.Green, meta);
 

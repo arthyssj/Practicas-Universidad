@@ -19,7 +19,6 @@ namespace JuegoLaberinto
         }
         public void Dibujar(Graphics g)
         {
-            //color del jugador
             if (_playerImage == null)
             {
                 // create image from byte[] resource once and keep a Bitmap copy so we can dispose the stream
@@ -29,6 +28,10 @@ namespace JuegoLaberinto
             }
 
             g.DrawImage(_playerImage, Area());
+            using(Pen bordeJugador = new Pen(Color.DeepPink, 1))
+            {
+                g.DrawRectangle(bordeJugador, Area());
+            }
         }
         public void Mover(string direccion)
         {
