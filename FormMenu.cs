@@ -13,7 +13,7 @@ namespace JuegoLaberinto
 {
     public partial class FormMenu : Form
     {
-        SoundPlayer sonidoMenu = new SoundPlayer(Properties.Resources.sound_menu);
+        SoundPlayer sonidoMenu = new SoundPlayer(Properties.Resources.gta_sound);
         System.Media.SoundPlayer sonidoIniciar = new SoundPlayer(Properties.Resources.efecto_iniciar);
         System.Media.SoundPlayer sonidoCancelar = new SoundPlayer(Properties.Resources.efecto_cancelar);
 

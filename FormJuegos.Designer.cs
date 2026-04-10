@@ -51,6 +51,7 @@
             Name = "FormJuego";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "LABERINTO: EL JUEGO";
+            FormClosing += FormJuego_FormClosing;
             ResumeLayout(false);
         }
 

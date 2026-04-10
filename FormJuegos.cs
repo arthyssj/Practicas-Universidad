@@ -1,9 +1,11 @@
 using System.Media;
+using WMPLib;
 namespace JuegoLaberinto
 
 {
     public partial class FormJuego : Form
     {
+        WindowsMediaPlayer musicaNiveles = new WindowsMediaPlayer();
         Jugador jugador = new Jugador();
         Random rnd = new Random();
         int nivelActual = 1;
@@ -22,6 +24,16 @@ namespace JuegoLaberinto
         {
             InitializeComponent();
             this.DoubleBuffered = true;
+            try
+            {
+                // El archivo debe estar en la carpeta bin/Debug/net8.0-windows
+                musicaNiveles.URL = "musicaNiveles.wav";
+                musicaNiveles.settings.setMode("loop", true);
+                musicaNiveles.settings.volume = 10;
+                musicaNiveles.controls.play();
+            }
+            catch { /* Si no encuentra el archivo, el juego no se crashea */ }
+
             using var ms = new MemoryStream(Properties.Resources.icon);
 
             this.Icon = new Icon(ms);
@@ -62,7 +74,7 @@ namespace JuegoLaberinto
                 g.DrawString($"Tiempo: {tiempo}", font, Brushes.Black, new PointF(592, 42));
                 g.DrawString($"Vidas: {vidas}", font, Brushes.Crimson, new PointF(590, 15));
                 g.DrawString($"Tiempo: {tiempo}", font, Brushes.Gold, new PointF(590, 40));
-                
+
             }
             jugador.Dibujar(g);
         }
@@ -78,8 +90,8 @@ namespace JuegoLaberinto
 
             if (ColisionPared())
             {
-               
-                
+
+
                 // perder una vida y regresar a la posición 
                 vidas--;
                 sonidoColision.Play();
@@ -97,14 +109,14 @@ namespace JuegoLaberinto
                 sonidoNivel.Play();
                 if (nivelActual < 3)
                 {
-                   
+
                     nivelActual++;
                     MessageBox.Show($"¡Felicidades! Pasaste al Nivel {nivelActual}");
                     CargarNivel();
                 }
                 else
                 {
-                    
+
                     sonidoVictoria.Play();
                     MessageBox.Show("¡HAS GANADO EL JUEGO COMPLETO!");
                     ResetGame();
@@ -128,6 +140,7 @@ namespace JuegoLaberinto
         private void ResetGame()
         {
             // reiniciar estado del juego
+            musicaNiveles.controls.stop();
             tmrCronometro.Stop();
             FormMenu formMenu = new FormMenu();
             formMenu.Show();
@@ -149,9 +162,9 @@ namespace JuegoLaberinto
                 if (vidas <= 0)
                 {
                     sonidoGameOver.Play();
-                   
+
                     MessageBox.Show("Game Over");
-                   
+
                     ResetGame();
                 }
                 else
@@ -206,7 +219,7 @@ namespace JuegoLaberinto
                     meta = new Rectangle(Math.Min(bounds.Width - 60, 720), 300, 40, 40);
                     var zonaSeguraMeta = meta;
                     zonaSeguraMeta.Inflate(30, 30);
-                    var generated = GenerateNonOverlappingRectangles(15, bounds, 30, 100, 30, 100, zonaSeguraMeta);
+                    var generated = GenerateNonOverlappingRectangles(15, bounds, 60, 100, 60, 100, zonaSeguraMeta);
                     foreach (var r in generated) paredes.Add(r);
                     jugador.x = 50;
                     jugador.y = 50;
@@ -222,7 +235,7 @@ namespace JuegoLaberinto
                     meta = new Rectangle(700, 500, 60, 60);
                     var zonaSeguraMeta3 = meta;
                     zonaSeguraMeta3.Inflate(50, 50);
-                    var generated3 = GenerateNonOverlappingRectangles(18, bounds3, 30, 100, 30, 115, zonaSeguraMeta3);
+                    var generated3 = GenerateNonOverlappingRectangles(18, bounds3, 60, 100, 60, 115, zonaSeguraMeta3);
 
                     foreach (var r in generated3) paredes.Add(r);
                     jugador.Velocidad = 30;
@@ -273,6 +286,9 @@ namespace JuegoLaberinto
             return list;
         }
 
-       
+        private void FormJuego_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
