@@ -18,6 +18,7 @@ namespace JuegoLaberinto
         SoundPlayer sonidoGameOver = new SoundPlayer(Properties.Resources.sound_gameover);
         SoundPlayer sonidoVictoria = new SoundPlayer(Properties.Resources.efecto_de_victoria);
         SoundPlayer sonidoNivel = new SoundPlayer(Properties.Resources.Efecto_de_FNAF);
+        bool volverAlMenu = false;
 
 
         public FormJuego()
@@ -142,6 +143,7 @@ namespace JuegoLaberinto
             // reiniciar estado del juego
             musicaNiveles.controls.stop();
             tmrCronometro.Stop();
+            volverAlMenu = true;
             FormMenu formMenu = new FormMenu();
             formMenu.Show();
             this.Close();
@@ -288,7 +290,10 @@ namespace JuegoLaberinto
 
         private void FormJuego_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Application.Exit();
+            if(volverAlMenu == false)
+            {
+                Application.Exit();
+            }
         }
     }
 }
