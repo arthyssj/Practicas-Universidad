@@ -74,15 +74,15 @@ namespace JuegoLaberinto
             if (ColisionPared())
             {
                
-                sonidoColision.Play();
+                
                 // perder una vida y regresar a la posición 
                 vidas--;
+                sonidoColision.Play();
                 jugador.x = 50;
                 jugador.y = 50;
                 if (vidas <= 0)
                 {
                     sonidoGameOver.Play();
-
                     MessageBox.Show("Game Over");
                     ResetGame();
                 }
@@ -137,13 +137,16 @@ namespace JuegoLaberinto
             {
                 // 1. DETENER EL RELOJ DE INMEDIATO
                 tmrCronometro.Stop();
+                sonidoColision.Play();
 
                 vidas--;
 
                 if (vidas <= 0)
                 {
                     sonidoGameOver.Play();
+                   
                     MessageBox.Show("Game Over");
+                   
                     ResetGame();
                 }
                 else

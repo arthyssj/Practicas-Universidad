@@ -36,6 +36,7 @@
             // 
             btnIniciar.BackColor = Color.Indigo;
             btnIniciar.FlatAppearance.BorderColor = Color.FromArgb(255, 128, 255);
+            btnIniciar.FlatAppearance.BorderSize = 2;
             btnIniciar.FlatAppearance.MouseOverBackColor = Color.DeepPink;
             btnIniciar.FlatStyle = FlatStyle.Flat;
             btnIniciar.Font = new Font("Showcard Gothic", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -43,7 +44,7 @@
             btnIniciar.Location = new Point(207, 137);
             btnIniciar.Name = "btnIniciar";
             btnIniciar.Size = new Size(327, 98);
-            btnIniciar.TabIndex = 0;
+            btnIniciar.TabIndex = 1;
             btnIniciar.Text = "Iniciar Juego";
             btnIniciar.UseVisualStyleBackColor = false;
             btnIniciar.Click += btnIniciar_Click;
@@ -52,6 +53,7 @@
             // 
             btnSalir.BackColor = Color.Indigo;
             btnSalir.FlatAppearance.BorderColor = Color.FromArgb(255, 128, 255);
+            btnSalir.FlatAppearance.BorderSize = 2;
             btnSalir.FlatAppearance.MouseOverBackColor = Color.DeepPink;
             btnSalir.FlatStyle = FlatStyle.Flat;
             btnSalir.Font = new Font("Showcard Gothic", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -59,7 +61,7 @@
             btnSalir.Location = new Point(207, 268);
             btnSalir.Name = "btnSalir";
             btnSalir.Size = new Size(327, 98);
-            btnSalir.TabIndex = 0;
+            btnSalir.TabIndex = 2;
             btnSalir.Text = "Salir";
             btnSalir.UseVisualStyleBackColor = false;
             btnSalir.Click += btnSalir_Click;

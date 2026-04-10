@@ -14,6 +14,8 @@ namespace JuegoLaberinto
     public partial class FormMenu : Form
     {
         SoundPlayer sonidoMenu = new SoundPlayer(Properties.Resources.sound_menu);
+        System.Media.SoundPlayer sonidoIniciar = new SoundPlayer(Properties.Resources.efecto_iniciar);
+        System.Media.SoundPlayer sonidoCancelar = new SoundPlayer(Properties.Resources.efecto_cancelar);
 
         public FormMenu()
         {
@@ -26,12 +28,15 @@ namespace JuegoLaberinto
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
+            sonidoCancelar.PlaySync();
             Application.Exit();
         }
 
         private void btnIniciar_Click(object sender, EventArgs e)
         {
-            sonidoMenu.Stop();
+            sonidoIniciar.Play();
+            //sonidoMenu.Stop();
+            System.Threading.Thread.Sleep(100); 
             FormJuego formJuego = new FormJuego();
             formJuego.Show();
             this.Hide();

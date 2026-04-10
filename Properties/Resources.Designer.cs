@@ -72,6 +72,15 @@ namespace JuegoLaberinto.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.IO.UnmanagedMemoryStream similar a System.IO.MemoryStream.
         /// </summary>
+        internal static System.IO.UnmanagedMemoryStream efecto_cancelar {
+            get {
+                return ResourceManager.GetStream("efecto_cancelar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.IO.UnmanagedMemoryStream similar a System.IO.MemoryStream.
+        /// </summary>
         internal static System.IO.UnmanagedMemoryStream Efecto_de_FNAF {
             get {
                 return ResourceManager.GetStream("Efecto-de-FNAF", resourceCulture);
@@ -84,6 +93,15 @@ namespace JuegoLaberinto.Properties {
         internal static System.IO.UnmanagedMemoryStream efecto_de_victoria {
             get {
                 return ResourceManager.GetStream("efecto_de_victoria", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.IO.UnmanagedMemoryStream similar a System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream efecto_iniciar {
+            get {
+                return ResourceManager.GetStream("efecto_iniciar", resourceCulture);
             }
         }
         
