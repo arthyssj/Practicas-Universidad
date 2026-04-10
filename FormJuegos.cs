@@ -117,7 +117,7 @@ namespace JuegoLaberinto
                     vidas = 0;
                     this.Invalidate();
                     this.Update();
-
+                    musicaNiveles.controls.stop();
                     sonidoGameOver.Play();
                     MessageBox.Show("Game Over");
                     ResetGame();
@@ -182,8 +182,8 @@ namespace JuegoLaberinto
 
                 if (vidas <= 0)
                 {
+                    musicaNiveles.controls.stop();
                     sonidoGameOver.Play();
-
                     MessageBox.Show("Game Over");
 
                     ResetGame();
@@ -239,7 +239,7 @@ namespace JuegoLaberinto
                     meta = new Rectangle(Math.Min(bounds.Width - 30, 720), 300, 40, 40);
                     var zonaSeguraMeta = meta;
                     zonaSeguraMeta.Inflate(5, 5);
-                    var generated = GenerateNonOverlappingRectangles(15, bounds, 40, 110, 40, 100, zonaSeguraMeta);
+                    var generated = GenerateNonOverlappingRectangles(30, bounds, 40, 80, 40, 60, zonaSeguraMeta);
                     foreach (var r in generated) paredes.Add(r);
                     jugador.x = 50;
                     jugador.y = 50;
@@ -255,7 +255,7 @@ namespace JuegoLaberinto
                     meta = new Rectangle(700, 500, 60, 60);
                     var zonaSeguraMeta3 = meta;
                     zonaSeguraMeta3.Inflate(5, 5);
-                    var generated3 = GenerateNonOverlappingRectangles(18, bounds3, 40, 100, 40, 115, zonaSeguraMeta3);
+                    var generated3 = GenerateNonOverlappingRectangles(25, bounds3, 40, 100, 40, 115, zonaSeguraMeta3);
 
                     foreach (var r in generated3) paredes.Add(r);
                     jugador.Velocidad = 30;

@@ -30,6 +30,7 @@
         {
             btnIniciar = new Button();
             btnSalir = new Button();
+            btnIns = new Button();
             SuspendLayout();
             // 
             // btnIniciar
@@ -40,8 +41,8 @@
             btnIniciar.FlatAppearance.MouseOverBackColor = Color.DeepPink;
             btnIniciar.FlatStyle = FlatStyle.Flat;
             btnIniciar.Font = new Font("Showcard Gothic", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnIniciar.ForeColor = Color.Transparent;
-            btnIniciar.Location = new Point(207, 137);
+            btnIniciar.ForeColor = Color.Gold;
+            btnIniciar.Location = new Point(226, 76);
             btnIniciar.Name = "btnIniciar";
             btnIniciar.Size = new Size(327, 98);
             btnIniciar.TabIndex = 1;
@@ -58,7 +59,7 @@
             btnSalir.FlatStyle = FlatStyle.Flat;
             btnSalir.Font = new Font("Showcard Gothic", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnSalir.ForeColor = Color.Transparent;
-            btnSalir.Location = new Point(207, 268);
+            btnSalir.Location = new Point(226, 370);
             btnSalir.Name = "btnSalir";
             btnSalir.Size = new Size(327, 98);
             btnSalir.TabIndex = 2;
@@ -66,13 +67,30 @@
             btnSalir.UseVisualStyleBackColor = false;
             btnSalir.Click += btnSalir_Click;
             // 
+            // btnIns
+            // 
+            btnIns.BackColor = Color.Indigo;
+            btnIns.FlatAppearance.BorderColor = Color.FromArgb(255, 128, 255);
+            btnIns.FlatAppearance.BorderSize = 2;
+            btnIns.FlatAppearance.MouseOverBackColor = Color.DeepPink;
+            btnIns.FlatStyle = FlatStyle.Flat;
+            btnIns.Font = new Font("Showcard Gothic", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnIns.ForeColor = Color.Transparent;
+            btnIns.Location = new Point(226, 223);
+            btnIns.Name = "btnIns";
+            btnIns.Size = new Size(327, 98);
+            btnIns.TabIndex = 2;
+            btnIns.Text = "Instrucciones";
+            btnIns.UseVisualStyleBackColor = false;
+            btnIns.Click += btnIns_Click;
+            // 
             // FormMenu
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.None;
             BackgroundImage = Properties.Resources.laberinto_fondo;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(778, 544);
+            Controls.Add(btnIns);
             Controls.Add(btnSalir);
             Controls.Add(btnIniciar);
             DoubleBuffered = true;
@@ -89,5 +107,6 @@
 
         private Button btnIniciar;
         private Button btnSalir;
+        private Button btnIns;
     }
 }

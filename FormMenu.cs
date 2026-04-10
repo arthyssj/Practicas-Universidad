@@ -42,6 +42,13 @@ namespace JuegoLaberinto
             this.Hide();
         }
 
+        private void btnIns_Click(object sender, EventArgs e)
+        {
+            FormIns formIns = new FormIns();
+            formIns.ShowDialog();
+        }
+
+
         private void FormMenu_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
