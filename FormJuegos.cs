@@ -81,58 +81,77 @@ namespace JuegoLaberinto
         }
         public void FormJuego_KeyDown(object sender, KeyEventArgs e)
         {
+            // 1. Guardamos la posición por si acaso (aunque ahora reinicias al inicio)
             int xAnterior = jugador.x;
             int yAnterior = jugador.y;
+
+            // 2. Movemos al jugador
             if (e.KeyCode == Keys.Up) jugador.Mover("arriba");
             if (e.KeyCode == Keys.Down) jugador.Mover("abajo");
             if (e.KeyCode == Keys.Left) jugador.Mover("izquierda");
             if (e.KeyCode == Keys.Right) jugador.Mover("derecha");
 
+            // 3. CREAMOS EL HITBOX REDUCIDO (La "Opción B")
+            // Le quitamos 6 píxeles de cada lado para que sea más permisivo
+            Rectangle hitboxJugador = new Rectangle(jugador.x + 6, jugador.y + 6, jugador.Tamano - 12, jugador.Tamano - 12);
 
-            if (ColisionPared())
+            // 4. VERIFICAMOS COLISIÓN CON LAS PAREDES
+            bool huboChoque = false;
+            foreach (var pared in paredes)
             {
+                if (hitboxJugador.IntersectsWith(pared))
+                {
+                    huboChoque = true;
+                    break;
+                }
+            }
 
-
-                // perder una vida y regresar a la posición 
-                vidas--;
+            if (huboChoque)
+            {
                 sonidoColision.Play();
-                jugador.x = 50;
-                jugador.y = 50;
+                vidas--;
+
+                // Forzamos el redibujado para que se vea el 0 si es la última vida
                 if (vidas <= 0)
                 {
+                    vidas = 0;
+                    this.Invalidate();
+                    this.Update();
+
                     sonidoGameOver.Play();
                     MessageBox.Show("Game Over");
                     ResetGame();
+                    return; // Salimos para no ejecutar lo de la meta
+                }
+                else
+                {
+                    // Si aún tiene vidas, lo mandamos al inicio del nivel
+                    jugador.x = 50;
+                    jugador.y = 50;
                 }
             }
+
+            // 5. VERIFICAMOS SI LLEGÓ A LA META
+            // Aquí sí usamos el área completa del jugador para que sea justo
             if (jugador.Area().IntersectsWith(meta))
             {
                 sonidoNivel.Play();
                 if (nivelActual < 3)
                 {
-
                     nivelActual++;
                     MessageBox.Show($"¡Felicidades! Pasaste al Nivel {nivelActual}");
                     CargarNivel();
                 }
                 else
                 {
-
                     sonidoVictoria.Play();
                     MessageBox.Show("¡HAS GANADO EL JUEGO COMPLETO!");
                     ResetGame();
+                    return;
                 }
             }
-            Invalidate();
-        }
-        private bool ColisionPared()
-        {
-            foreach (var pared in paredes)
-            {
-                if (jugador.Area().IntersectsWith(pared))
-                    return true;
-            }
-            return false;
+
+            Invalidate(); // Redibujar todo
         }
         private void FormJuego_Load(object sender, EventArgs e)
         {
@@ -214,14 +233,13 @@ namespace JuegoLaberinto
                 case 2:
                     this.BackgroundImage = Properties.Resources.fondoNivel2;
                     this.BackgroundImageLayout = ImageLayout.Stretch;
-                    // generar 10 rectángulos aleatorios que no se encimen
                     this.BackColor = Color.DarkOrange;
                     var bounds = new Rectangle(0, 0, Math.Max(Width, 800), Math.Max(Height, 600));
                     // mover meta a otra posición más difícil de alcanzar y crear zona segura alrededor
-                    meta = new Rectangle(Math.Min(bounds.Width - 60, 720), 300, 40, 40);
+                    meta = new Rectangle(Math.Min(bounds.Width - 30, 720), 300, 40, 40);
                     var zonaSeguraMeta = meta;
-                    zonaSeguraMeta.Inflate(30, 30);
-                    var generated = GenerateNonOverlappingRectangles(15, bounds, 60, 100, 60, 100, zonaSeguraMeta);
+                    zonaSeguraMeta.Inflate(5, 5);
+                    var generated = GenerateNonOverlappingRectangles(15, bounds, 40, 110, 40, 100, zonaSeguraMeta);
                     foreach (var r in generated) paredes.Add(r);
                     jugador.x = 50;
                     jugador.y = 50;
@@ -236,8 +254,8 @@ namespace JuegoLaberinto
                     var bounds3 = new Rectangle(0, 0, Math.Max(Width, 800), Math.Max(Height, 600));
                     meta = new Rectangle(700, 500, 60, 60);
                     var zonaSeguraMeta3 = meta;
-                    zonaSeguraMeta3.Inflate(50, 50);
-                    var generated3 = GenerateNonOverlappingRectangles(18, bounds3, 60, 100, 60, 115, zonaSeguraMeta3);
+                    zonaSeguraMeta3.Inflate(5, 5);
+                    var generated3 = GenerateNonOverlappingRectangles(18, bounds3, 40, 100, 40, 115, zonaSeguraMeta3);
 
                     foreach (var r in generated3) paredes.Add(r);
                     jugador.Velocidad = 30;
@@ -266,7 +284,7 @@ namespace JuegoLaberinto
                 var candidate = new Rectangle(x, y, w, h);
 
                 // evitar que se empalme con la zona de inicio del jugador
-                var playerStart = new Rectangle(40, 40, 80, 80);
+                var playerStart = new Rectangle(30, 30, 60, 60);
                 if (candidate.IntersectsWith(playerStart)) continue;
                 // evitar que se empalme con la zona segura alrededor de la meta si se proporcionó
                 if (zonaSeguraMeta.HasValue && candidate.IntersectsWith(zonaSeguraMeta.Value)) continue;

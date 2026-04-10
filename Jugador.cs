@@ -12,7 +12,7 @@ namespace JuegoLaberinto
         public int x {  get; set; }
         public int y { get; set; }
         public int Tamano { get; set; } = 25;
-        public int Velocidad { get; set; } = 10;
+        public int Velocidad { get; set; } = 5;
         public Rectangle Area()
         {
             return new Rectangle(x,y, Tamano, Tamano);
