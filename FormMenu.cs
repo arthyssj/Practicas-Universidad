@@ -13,11 +13,12 @@ namespace JuegoLaberinto
 {
     public partial class FormMenu : Form
     {
+        SoundPlayer sonidoMenu = new SoundPlayer(Properties.Resources.sound_menu);
+
         public FormMenu()
         {
 
             InitializeComponent();
-            SoundPlayer sonidoMenu = new SoundPlayer(Properties.Resources.sound_menu);
             sonidoMenu.PlayLooping();
             using var ms = new MemoryStream(Properties.Resources.icon);
             this.Icon = new Icon(ms);
@@ -30,6 +31,7 @@ namespace JuegoLaberinto
 
         private void btnIniciar_Click(object sender, EventArgs e)
         {
+            sonidoMenu.Stop();
             FormJuego formJuego = new FormJuego();
             formJuego.Show();
             this.Hide();

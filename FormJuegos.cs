@@ -12,7 +12,11 @@ namespace JuegoLaberinto
         const int tiempoInicial = 60;
         List<Rectangle> paredes = new List<Rectangle>();
         Rectangle meta;
-        //Campo random para todo el formulario
+        SoundPlayer sonidoColision = new SoundPlayer(Properties.Resources.DEAD_STEVE_SOUND);
+        SoundPlayer sonidoGameOver = new SoundPlayer(Properties.Resources.sound_gameover);
+        SoundPlayer sonidoVictoria = new SoundPlayer(Properties.Resources.efecto_de_victoria);
+        SoundPlayer sonidoNivel = new SoundPlayer(Properties.Resources.Efecto_de_FNAF);
+
 
         public FormJuego()
         {
@@ -65,9 +69,10 @@ namespace JuegoLaberinto
             if (e.KeyCode == Keys.Left) jugador.Mover("izquierda");
             if (e.KeyCode == Keys.Right) jugador.Mover("derecha");
 
+
             if (ColisionPared())
             {
-                SoundPlayer sonidoColision = new SoundPlayer(Properties.Resources.DEAD_STEVE_SOUND);
+               
                 sonidoColision.Play();
                 // perder una vida y regresar a la posición 
                 vidas--;
@@ -75,7 +80,6 @@ namespace JuegoLaberinto
                 jugador.y = 50;
                 if (vidas <= 0)
                 {
-                    SoundPlayer sonidoGameOver = new SoundPlayer(Properties.Resources.sound_gameover);
                     sonidoGameOver.Play();
 
                     MessageBox.Show("Game Over");
@@ -84,7 +88,6 @@ namespace JuegoLaberinto
             }
             if (jugador.Area().IntersectsWith(meta))
             {
-                SoundPlayer sonidoNivel = new SoundPlayer(Properties.Resources.Efecto_de_FNAF);
                 sonidoNivel.Play();
                 if (nivelActual < 3)
                 {
@@ -95,7 +98,7 @@ namespace JuegoLaberinto
                 }
                 else
                 {
-                    SoundPlayer sonidoVictoria = new SoundPlayer(Properties.Resources.efecto_de_victoria);
+                    
                     sonidoVictoria.Play();
                     MessageBox.Show("¡HAS GANADO EL JUEGO COMPLETO!");
                     ResetGame();
@@ -171,6 +174,8 @@ namespace JuegoLaberinto
             switch (nivelActual)
             {
                 case 1:
+                    this.BackgroundImage = Properties.Resources.fondo_nivel_1;
+                    this.BackgroundImageLayout = ImageLayout.Stretch;
                     this.BackColor = Color.DarkMagenta;
                     paredes.Add(new Rectangle(100, 0, 20, 400));
                     paredes.Add(new Rectangle(200, 50, 20, 400));
