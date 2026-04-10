@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 
 namespace JuegoLaberinto
 {
     public class Jugador
     {
+        // cached player image created from the byte[] resource
+        private static Image? _playerImage;
+
         public int x {  get; set; }
         public int y { get; set; }
-        public int Tamano { get; set; } = 10;
+        public int Tamano { get; set; } = 25;
         public int Velocidad { get; set; } = 10;
         public Rectangle Area()
         {
@@ -16,7 +20,15 @@ namespace JuegoLaberinto
         public void Dibujar(Graphics g)
         {
             //color del jugador
-            g.FillRectangle(Brushes.Red, Area());
+            if (_playerImage == null)
+            {
+                // create image from byte[] resource once and keep a Bitmap copy so we can dispose the stream
+                using var ms = new MemoryStream(Properties.Resources.montapuercos);
+                using var tmp = Image.FromStream(ms);
+                _playerImage = new Bitmap(tmp);
+            }
+
+            g.DrawImage(_playerImage, Area());
         }
         public void Mover(string direccion)
         {

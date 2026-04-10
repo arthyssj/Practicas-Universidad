@@ -21,6 +21,7 @@ namespace JuegoLaberinto
         public FormJuego()
         {
             InitializeComponent();
+            this.DoubleBuffered = true;
             using var ms = new MemoryStream(Properties.Resources.icon);
             this.Icon = new Icon(ms);
             this.KeyPreview = true;
@@ -141,6 +142,7 @@ namespace JuegoLaberinto
 
                 if (vidas <= 0)
                 {
+                    sonidoGameOver.Play();
                     MessageBox.Show("Game Over");
                     ResetGame();
                 }
@@ -187,14 +189,16 @@ namespace JuegoLaberinto
                     jugador.Velocidad = 10;
                     break;
                 case 2:
+                    this.BackgroundImage = Properties.Resources.fondoNivel2;
+                    this.BackgroundImageLayout = ImageLayout.Stretch;
                     // generar 10 rectángulos aleatorios que no se encimen
                     this.BackColor = Color.DarkOrange;
                     var bounds = new Rectangle(0, 0, Math.Max(Width, 800), Math.Max(Height, 600));
                     // mover meta a otra posición más difícil de alcanzar y crear zona segura alrededor
                     meta = new Rectangle(Math.Min(bounds.Width - 60, 720), 300, 40, 40);
                     var zonaSeguraMeta = meta;
-                    zonaSeguraMeta.Inflate(50, 50);
-                    var generated = GenerateNonOverlappingRectangles(15, bounds, 30, 120, 30, 100, zonaSeguraMeta);
+                    zonaSeguraMeta.Inflate(30, 30);
+                    var generated = GenerateNonOverlappingRectangles(15, bounds, 30, 100, 30, 100, zonaSeguraMeta);
                     foreach (var r in generated) paredes.Add(r);
                     jugador.x = 50;
                     jugador.y = 50;
@@ -203,12 +207,14 @@ namespace JuegoLaberinto
                     break;
 
                 case 3:
+                    this.BackgroundImage = Properties.Resources.fondoNivel3;
+                    this.BackgroundImageLayout = ImageLayout.Stretch;
                     this.BackColor = Color.DarkSlateBlue;
                     var bounds3 = new Rectangle(0, 0, Math.Max(Width, 800), Math.Max(Height, 600));
                     meta = new Rectangle(700, 500, 60, 60);
                     var zonaSeguraMeta3 = meta;
                     zonaSeguraMeta3.Inflate(50, 50);
-                    var generated3 = GenerateNonOverlappingRectangles(20, bounds3, 30, 120, 30, 200, zonaSeguraMeta3);
+                    var generated3 = GenerateNonOverlappingRectangles(18, bounds3, 30, 100, 30, 115, zonaSeguraMeta3);
 
                     foreach (var r in generated3) paredes.Add(r);
                     jugador.Velocidad = 30;
