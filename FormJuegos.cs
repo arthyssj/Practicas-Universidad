@@ -23,6 +23,7 @@ namespace JuegoLaberinto
             InitializeComponent();
             this.DoubleBuffered = true;
             using var ms = new MemoryStream(Properties.Resources.icon);
+
             this.Icon = new Icon(ms);
             this.KeyPreview = true;
             this.BackColor = Color.Aqua;
@@ -54,10 +55,14 @@ namespace JuegoLaberinto
             g.FillRectangle(Brushes.Green, meta);
 
             // dibujar texto de vidas en la esquina superior izquierda
-            using (var font = new Font("Arial", 10))
+            using (var font = new Font("Consolas", 14, FontStyle.Bold))
             {
-                g.DrawString($"Vidas: {vidas}", font, Brushes.White, new PointF(650, 15));
-                g.DrawString($"Tiempo: {tiempo}", font, Brushes.White, new PointF(650, 35));
+
+                g.DrawString($"Vidas: {vidas}", font, Brushes.Black, new PointF(592, 17));
+                g.DrawString($"Tiempo: {tiempo}", font, Brushes.Black, new PointF(592, 42));
+                g.DrawString($"Vidas: {vidas}", font, Brushes.Crimson, new PointF(590, 15));
+                g.DrawString($"Tiempo: {tiempo}", font, Brushes.Gold, new PointF(590, 40));
+                
             }
             jugador.Dibujar(g);
         }
