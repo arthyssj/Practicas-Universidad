@@ -1,3 +1,4 @@
+using System.Media;
 namespace JuegoLaberinto
 
 {
@@ -66,26 +67,36 @@ namespace JuegoLaberinto
 
             if (ColisionPared())
             {
+                SoundPlayer sonidoColision = new SoundPlayer(Properties.Resources.DEAD_STEVE_SOUND);
+                sonidoColision.Play();
                 // perder una vida y regresar a la posición 
                 vidas--;
                 jugador.x = 50;
                 jugador.y = 50;
                 if (vidas <= 0)
                 {
+                    SoundPlayer sonidoGameOver = new SoundPlayer(Properties.Resources.sound_gameover);
+                    sonidoGameOver.Play();
+
                     MessageBox.Show("Game Over");
                     ResetGame();
                 }
             }
             if (jugador.Area().IntersectsWith(meta))
             {
+                SoundPlayer sonidoNivel = new SoundPlayer(Properties.Resources.Efecto_de_FNAF);
+                sonidoNivel.Play();
                 if (nivelActual < 3)
                 {
+                   
                     nivelActual++;
                     MessageBox.Show($"¡Felicidades! Pasaste al Nivel {nivelActual}");
                     CargarNivel();
                 }
                 else
                 {
+                    SoundPlayer sonidoVictoria = new SoundPlayer(Properties.Resources.efecto_de_victoria);
+                    sonidoVictoria.Play();
                     MessageBox.Show("¡HAS GANADO EL JUEGO COMPLETO!");
                     ResetGame();
                 }

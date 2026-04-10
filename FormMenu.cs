@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,6 +17,8 @@ namespace JuegoLaberinto
         {
 
             InitializeComponent();
+            SoundPlayer sonidoMenu = new SoundPlayer(Properties.Resources.sound_menu);
+            sonidoMenu.PlayLooping();
             using var ms = new MemoryStream(Properties.Resources.icon);
             this.Icon = new Icon(ms);
         }

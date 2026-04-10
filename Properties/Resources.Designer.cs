@@ -61,6 +61,33 @@ namespace JuegoLaberinto.Properties {
         }
         
         /// <summary>
+        ///   Busca un recurso adaptado de tipo System.IO.UnmanagedMemoryStream similar a System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream DEAD_STEVE_SOUND {
+            get {
+                return ResourceManager.GetStream("DEAD-STEVE-SOUND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.IO.UnmanagedMemoryStream similar a System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Efecto_de_FNAF {
+            get {
+                return ResourceManager.GetStream("Efecto-de-FNAF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.IO.UnmanagedMemoryStream similar a System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream efecto_de_victoria {
+            get {
+                return ResourceManager.GetStream("efecto_de_victoria", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca un recurso adaptado de tipo System.Byte[].
         /// </summary>
         internal static byte[] icon {
@@ -77,6 +104,24 @@ namespace JuegoLaberinto.Properties {
             get {
                 object obj = ResourceManager.GetObject("laberinto_fondo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.IO.UnmanagedMemoryStream similar a System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream sound_gameover {
+            get {
+                return ResourceManager.GetStream("sound_gameover", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.IO.UnmanagedMemoryStream similar a System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream sound_menu {
+            get {
+                return ResourceManager.GetStream("sound_menu", resourceCulture);
             }
         }
     }
