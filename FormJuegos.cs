@@ -123,7 +123,8 @@ namespace JuegoLaberinto
                     this.Update();
                     musicaNiveles.controls.stop();
                     sonidoGameOver.Play();
-                    MessageBox.Show("Game Over");
+                    FormMensaje formMensaje = new FormMensaje("¡Game Over!");
+                    formMensaje.ShowDialog();
                     ResetGame();
                     return; // Salimos para no ejecutar lo de la meta
                 }
@@ -143,13 +144,15 @@ namespace JuegoLaberinto
                 if (nivelActual < 3)
                 {
                     nivelActual++;
-                    MessageBox.Show($"¡Felicidades! Pasaste al Nivel {nivelActual}");
+                    FormMensaje formMensaje = new FormMensaje("Pasaste al Nivel " + nivelActual);
+                    formMensaje.ShowDialog();
                     CargarNivel();
                 }
                 else
                 {
                     sonidoVictoria.Play();
-                    MessageBox.Show("¡HAS GANADO EL JUEGO COMPLETO!");
+                    FormMensaje formMensaje = new FormMensaje("FELICIDADES\n¡HAZ GANADO EL JUEGO!");
+                    formMensaje.ShowDialog();
                     ResetGame();
                     return;
                 }
