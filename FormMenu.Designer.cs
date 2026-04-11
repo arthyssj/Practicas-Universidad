@@ -35,6 +35,7 @@
             // 
             // btnIniciar
             // 
+            btnIniciar.Anchor = AnchorStyles.None;
             btnIniciar.BackColor = Color.Indigo;
             btnIniciar.FlatAppearance.BorderColor = Color.FromArgb(255, 128, 255);
             btnIniciar.FlatAppearance.BorderSize = 2;
@@ -52,6 +53,7 @@
             // 
             // btnSalir
             // 
+            btnSalir.Anchor = AnchorStyles.None;
             btnSalir.BackColor = Color.Indigo;
             btnSalir.FlatAppearance.BorderColor = Color.FromArgb(255, 128, 255);
             btnSalir.FlatAppearance.BorderSize = 2;
@@ -69,6 +71,7 @@
             // 
             // btnIns
             // 
+            btnIns.Anchor = AnchorStyles.None;
             btnIns.BackColor = Color.Indigo;
             btnIns.FlatAppearance.BorderColor = Color.FromArgb(255, 128, 255);
             btnIns.FlatAppearance.BorderSize = 2;
@@ -86,7 +89,8 @@
             // 
             // FormMenu
             // 
-            AutoScaleMode = AutoScaleMode.None;
+            AutoScaleDimensions = new SizeF(144F, 144F);
+            AutoScaleMode = AutoScaleMode.Dpi;
             BackgroundImage = Properties.Resources.fondoMenuV3;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(778, 544);

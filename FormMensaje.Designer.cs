@@ -34,6 +34,7 @@
             // 
             // btnOk
             // 
+            btnOk.Anchor = AnchorStyles.None;
             btnOk.BackColor = Color.Indigo;
             btnOk.FlatAppearance.BorderColor = Color.FromArgb(255, 128, 255);
             btnOk.FlatAppearance.MouseOverBackColor = Color.DeepPink;
@@ -61,7 +62,8 @@
             // 
             // FormMensaje
             // 
-            AutoScaleMode = AutoScaleMode.None;
+            AutoScaleDimensions = new SizeF(144F, 144F);
+            AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.Black;
             ClientSize = new Size(400, 200);
             ControlBox = false;
