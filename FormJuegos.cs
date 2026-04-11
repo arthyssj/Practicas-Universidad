@@ -121,6 +121,7 @@ namespace JuegoLaberinto
                     vidas = 0;
                     this.Invalidate();
                     this.Update();
+                    tmrCronometro.Stop();
                     musicaNiveles.controls.stop();
                     sonidoGameOver.Play();
                     FormMensaje formMensaje = new FormMensaje("¡Game Over!");
@@ -150,6 +151,8 @@ namespace JuegoLaberinto
                 }
                 else
                 {
+                    tmrCronometro.Stop();
+                    musicaNiveles.controls.stop();
                     sonidoVictoria.Play();
                     FormMensaje formMensaje = new FormMensaje("FELICIDADES\n¡HAZ GANADO EL JUEGO!");
                     formMensaje.ShowDialog();
@@ -189,9 +192,13 @@ namespace JuegoLaberinto
 
                 if (vidas <= 0)
                 {
+                    vidas = 0;
+                    this.Invalidate();
+                    this.Update();
                     musicaNiveles.controls.stop();
                     sonidoGameOver.Play();
-                    MessageBox.Show("Game Over");
+                    FormMensaje formMensaje = new FormMensaje("¡Game Over!");
+                    formMensaje.ShowDialog();
 
                     ResetGame();
                 }
@@ -261,8 +268,8 @@ namespace JuegoLaberinto
                     var bounds3 = new Rectangle(0, 0, Math.Max(Width, 800), Math.Max(Height, 600));
                     meta = new Rectangle(700, 500, 60, 60);
                     var zonaSeguraMeta3 = meta;
-                    zonaSeguraMeta3.Inflate(5, 5);
-                    var generated3 = GenerateNonOverlappingRectangles(25, bounds3, 40, 100, 40, 115, zonaSeguraMeta3);
+                    zonaSeguraMeta3.Inflate(25, 25);
+                    var generated3 = GenerateNonOverlappingRectangles(25, bounds3, 40, 80, 40, 115, zonaSeguraMeta3);
 
                     foreach (var r in generated3) paredes.Add(r);
                     jugador.Velocidad = 30;
