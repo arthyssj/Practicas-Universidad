@@ -61,16 +61,16 @@
             // 
             // FormMensaje
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.None;
             BackColor = Color.Black;
             ClientSize = new Size(400, 200);
+            ControlBox = false;
             Controls.Add(lblMensaje);
             Controls.Add(btnOk);
-            FormBorderStyle = FormBorderStyle.None;
+            FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            MaximizeBox = false;
             Name = "FormMensaje";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "FormMensaje";
             ResumeLayout(false);
         }
 

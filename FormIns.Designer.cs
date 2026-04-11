@@ -64,14 +64,14 @@
             AutoScaleMode = AutoScaleMode.None;
             BackColor = Color.Black;
             ClientSize = new Size(580, 292);
+            ControlBox = false;
             Controls.Add(btnClose);
             Controls.Add(lblIns);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
+            FormBorderStyle = FormBorderStyle.FixedToolWindow;
             MaximizeBox = false;
             Name = "FormIns";
             ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Instrucciones";
             ResumeLayout(false);
             PerformLayout();
         }

@@ -48,6 +48,7 @@ namespace JuegoLaberinto
             sonidoInstrucciones.Play();
             FormIns formIns = new FormIns();
             formIns.ShowDialog();
+            sonidoMenu.Play();
         }
 
 
