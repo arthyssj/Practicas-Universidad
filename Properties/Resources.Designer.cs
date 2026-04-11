@@ -118,6 +118,16 @@ namespace JuegoLaberinto.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap fondoMenuV3 {
+            get {
+                object obj = ResourceManager.GetObject("fondoMenuV3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap fondoNivel2 {
             get {
                 object obj = ResourceManager.GetObject("fondoNivel2", resourceCulture);
@@ -157,40 +167,10 @@ namespace JuegoLaberinto.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Byte[].
         /// </summary>
-        internal static byte[] icon_player {
-            get {
-                object obj = ResourceManager.GetObject("icon_player", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap laberinto_fondo {
-            get {
-                object obj = ResourceManager.GetObject("laberinto_fondo", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Byte[].
-        /// </summary>
         internal static byte[] montapuercos {
             get {
                 object obj = ResourceManager.GetObject("montapuercos", resourceCulture);
                 return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap nether {
-            get {
-                object obj = ResourceManager.GetObject("nether", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

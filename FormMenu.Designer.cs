@@ -87,7 +87,7 @@
             // FormMenu
             // 
             AutoScaleMode = AutoScaleMode.None;
-            BackgroundImage = Properties.Resources.laberinto_fondo;
+            BackgroundImage = Properties.Resources.fondoMenuV3;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(778, 544);
             Controls.Add(btnIns);
