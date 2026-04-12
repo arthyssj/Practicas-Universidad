@@ -61,6 +61,8 @@ namespace JuegoLaberinto
         private void FormJuego_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
+            // 1. Calcular el factor de escala (DPI)
+            float escala = this.DeviceDpi / 96f;
             foreach (var pared in paredes)
             {
                 g.FillRectangle(Brushes.Black, pared);
@@ -71,15 +73,30 @@ namespace JuegoLaberinto
             }
             g.FillRectangle(Brushes.Green, meta);
 
-            // dibujar texto de vidas en la esquina superior izquierda
-            using (var font = new Font("Consolas", 18, FontStyle.Bold))
+            using (var font = new Font("Consolas", 18 * escala, FontStyle.Bold, GraphicsUnit.Pixel))
             {
+                string textoVidas = $"Vidas: {vidas}";
+                string textoTiempo = $"Tiempo: {tiempo}";
 
-                g.DrawString($"Vidas: {vidas}", font, Brushes.Black, new PointF(596, 17));
-                g.DrawString($"Tiempo: {tiempo}", font, Brushes.Black, new PointF(596, 42));
-                g.DrawString($"Vidas: {vidas}", font, Brushes.Crimson, new PointF(594, 15));
-                g.DrawString($"Tiempo: {tiempo}", font, Brushes.Gold, new PointF(594, 40));
+                // 1. MEDIR EL TEXTO: Esto nos da el ancho exacto en píxeles
+                SizeF tamanoVidas = g.MeasureString(textoVidas, font);
+                SizeF tamanoTiempo = g.MeasureString(textoTiempo, font);
 
+                // 2. CALCULAR POSICIÓN X: (Ancho de ventana - Ancho del texto - un pequeño margen de 10px)
+                float xVidas = this.ClientSize.Width - tamanoVidas.Width - (10 * escala);
+                float xTiempo = this.ClientSize.Width - tamanoTiempo.Width - (10 * escala);
+
+                // 3. POSICIÓN Y
+                float yVidas = 15 * escala;
+                float yTiempo = 45 * escala;
+
+                // DIBUJAR SOMBRAS
+                g.DrawString(textoVidas, font, Brushes.Black, xVidas + (2 * escala), yVidas + (2 * escala));
+                g.DrawString(textoTiempo, font, Brushes.Black, xTiempo + (2 * escala), yTiempo + (2 * escala));
+
+                // DIBUJAR TEXTO PRINCIPAL
+                g.DrawString(textoVidas, font, Brushes.Crimson, xVidas, yVidas);
+                g.DrawString(textoTiempo, font, Brushes.Gold, xTiempo, yTiempo);
             }
             jugador.Dibujar(g);
         }
