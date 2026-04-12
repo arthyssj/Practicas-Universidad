@@ -34,16 +34,15 @@
             // 
             // lblIns
             // 
-            lblIns.AutoSize = true;
             lblIns.Font = new Font("Showcard Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblIns.ForeColor = Color.Gold;
-            lblIns.Location = new Point(17, 38);
+            lblIns.Location = new Point(11, 23);
             lblIns.Margin = new Padding(2, 0, 2, 0);
             lblIns.Name = "lblIns";
-            lblIns.Size = new Size(364, 60);
+            lblIns.Size = new Size(446, 111);
             lblIns.TabIndex = 0;
             lblIns.Text = "Usa las flechas para moverte.\r\nNo toques las paredes negras.\r\nTienes 3 vidas, pierdes se reinica el juego.\r\n";
-            lblIns.TextAlign = ContentAlignment.TopCenter;
+            lblIns.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // btnClose
             // 
@@ -52,7 +51,7 @@
             btnClose.FlatStyle = FlatStyle.Flat;
             btnClose.Font = new Font("Showcard Gothic", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnClose.ForeColor = Color.Transparent;
-            btnClose.Location = new Point(147, 122);
+            btnClose.Location = new Point(182, 136);
             btnClose.Margin = new Padding(2);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(104, 38);
@@ -66,7 +65,7 @@
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.Black;
-            ClientSize = new Size(399, 199);
+            ClientSize = new Size(468, 197);
             ControlBox = false;
             Controls.Add(lblIns);
             Controls.Add(btnClose);
@@ -77,7 +76,6 @@
             ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion

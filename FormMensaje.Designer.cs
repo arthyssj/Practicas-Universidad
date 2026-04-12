@@ -55,10 +55,10 @@
             lblMensaje.Anchor = AnchorStyles.None;
             lblMensaje.Font = new Font("Showcard Gothic", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblMensaje.ForeColor = Color.Gold;
-            lblMensaje.Location = new Point(50, 19);
+            lblMensaje.Location = new Point(11, 19);
             lblMensaje.Margin = new Padding(2, 0, 2, 0);
             lblMensaje.Name = "lblMensaje";
-            lblMensaje.Size = new Size(199, 75);
+            lblMensaje.Size = new Size(276, 75);
             lblMensaje.TabIndex = 1;
             lblMensaje.Text = "Mensaje";
             lblMensaje.TextAlign = ContentAlignment.MiddleCenter;
