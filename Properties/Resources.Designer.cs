@@ -167,6 +167,16 @@ namespace JuegoLaberinto.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Byte[].
         /// </summary>
+        internal static byte[] jaime_icon {
+            get {
+                object obj = ResourceManager.GetObject("jaime_icon", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
         internal static byte[] montapuercos {
             get {
                 object obj = ResourceManager.GetObject("montapuercos", resourceCulture);

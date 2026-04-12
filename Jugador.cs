@@ -22,7 +22,7 @@ namespace JuegoLaberinto
             if (_playerImage == null)
             {
                 // create image from byte[] resource once and keep a Bitmap copy so we can dispose the stream
-                using var ms = new MemoryStream(Properties.Resources.montapuercos);
+                using var ms = new MemoryStream(Properties.Resources.jaime_icon);
                 using var tmp = Image.FromStream(ms);
                 _playerImage = new Bitmap(tmp);
             }
