@@ -72,13 +72,13 @@ namespace JuegoLaberinto
             g.FillRectangle(Brushes.Green, meta);
 
             // dibujar texto de vidas en la esquina superior izquierda
-            using (var font = new Font("Consolas", 14, FontStyle.Bold))
+            using (var font = new Font("Consolas", 18, FontStyle.Bold))
             {
 
-                g.DrawString($"Vidas: {vidas}", font, Brushes.Black, new PointF(592, 17));
-                g.DrawString($"Tiempo: {tiempo}", font, Brushes.Black, new PointF(592, 42));
-                g.DrawString($"Vidas: {vidas}", font, Brushes.Crimson, new PointF(590, 15));
-                g.DrawString($"Tiempo: {tiempo}", font, Brushes.Gold, new PointF(590, 40));
+                g.DrawString($"Vidas: {vidas}", font, Brushes.Black, new PointF(596, 17));
+                g.DrawString($"Tiempo: {tiempo}", font, Brushes.Black, new PointF(596, 42));
+                g.DrawString($"Vidas: {vidas}", font, Brushes.Crimson, new PointF(594, 15));
+                g.DrawString($"Tiempo: {tiempo}", font, Brushes.Gold, new PointF(594, 40));
 
             }
             jugador.Dibujar(g);
