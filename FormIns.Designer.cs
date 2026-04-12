@@ -37,9 +37,10 @@
             lblIns.AutoSize = true;
             lblIns.Font = new Font("Showcard Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblIns.ForeColor = Color.Gold;
-            lblIns.Location = new Point(26, 55);
+            lblIns.Location = new Point(17, 38);
+            lblIns.Margin = new Padding(2, 0, 2, 0);
             lblIns.Name = "lblIns";
-            lblIns.Size = new Size(528, 90);
+            lblIns.Size = new Size(364, 60);
             lblIns.TabIndex = 0;
             lblIns.Text = "Usa las flechas para moverte.\r\nNo toques las paredes negras.\r\nTienes 3 vidas, pierdes se reinica el juego.\r\n";
             lblIns.TextAlign = ContentAlignment.TopCenter;
@@ -51,9 +52,10 @@
             btnClose.FlatStyle = FlatStyle.Flat;
             btnClose.Font = new Font("Showcard Gothic", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnClose.ForeColor = Color.Transparent;
-            btnClose.Location = new Point(212, 181);
+            btnClose.Location = new Point(147, 122);
+            btnClose.Margin = new Padding(2, 2, 2, 2);
             btnClose.Name = "btnClose";
-            btnClose.Size = new Size(156, 57);
+            btnClose.Size = new Size(104, 38);
             btnClose.TabIndex = 1;
             btnClose.Text = "Cerrar";
             btnClose.UseVisualStyleBackColor = false;
@@ -61,14 +63,15 @@
             // 
             // FormIns
             // 
-            AutoScaleDimensions = new SizeF(144F, 144F);
+            AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.Black;
-            ClientSize = new Size(580, 292);
+            ClientSize = new Size(399, 199);
             ControlBox = false;
-            Controls.Add(btnClose);
             Controls.Add(lblIns);
+            Controls.Add(btnClose);
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            Margin = new Padding(2, 2, 2, 2);
             MaximizeBox = false;
             Name = "FormIns";
             ShowIcon = false;

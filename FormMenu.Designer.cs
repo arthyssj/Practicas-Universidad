@@ -43,7 +43,7 @@
             btnIniciar.FlatStyle = FlatStyle.Flat;
             btnIniciar.Font = new Font("Showcard Gothic", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnIniciar.ForeColor = Color.Gold;
-            btnIniciar.Location = new Point(226, 76);
+            btnIniciar.Location = new Point(240, 94);
             btnIniciar.Name = "btnIniciar";
             btnIniciar.Size = new Size(327, 98);
             btnIniciar.TabIndex = 1;
@@ -61,7 +61,7 @@
             btnSalir.FlatStyle = FlatStyle.Flat;
             btnSalir.Font = new Font("Showcard Gothic", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnSalir.ForeColor = Color.Transparent;
-            btnSalir.Location = new Point(226, 370);
+            btnSalir.Location = new Point(240, 388);
             btnSalir.Name = "btnSalir";
             btnSalir.Size = new Size(327, 98);
             btnSalir.TabIndex = 3;
@@ -79,7 +79,7 @@
             btnIns.FlatStyle = FlatStyle.Flat;
             btnIns.Font = new Font("Showcard Gothic", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnIns.ForeColor = Color.Transparent;
-            btnIns.Location = new Point(226, 223);
+            btnIns.Location = new Point(240, 241);
             btnIns.Name = "btnIns";
             btnIns.Size = new Size(327, 98);
             btnIns.TabIndex = 2;
@@ -89,11 +89,11 @@
             // 
             // FormMenu
             // 
-            AutoScaleDimensions = new SizeF(144F, 144F);
+            AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackgroundImage = Properties.Resources.fondoMenuV3;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(778, 544);
+            ClientSize = new Size(804, 581);
             Controls.Add(btnIns);
             Controls.Add(btnSalir);
             Controls.Add(btnIniciar);

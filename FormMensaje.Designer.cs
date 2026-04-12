@@ -41,9 +41,10 @@
             btnOk.FlatStyle = FlatStyle.Flat;
             btnOk.Font = new Font("Showcard Gothic", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnOk.ForeColor = Color.White;
-            btnOk.Location = new Point(151, 127);
+            btnOk.Location = new Point(116, 96);
+            btnOk.Margin = new Padding(2, 2, 2, 2);
             btnOk.Name = "btnOk";
-            btnOk.Size = new Size(100, 50);
+            btnOk.Size = new Size(67, 33);
             btnOk.TabIndex = 0;
             btnOk.Text = "OK";
             btnOk.UseVisualStyleBackColor = false;
@@ -53,23 +54,25 @@
             // 
             lblMensaje.Font = new Font("Showcard Gothic", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblMensaje.ForeColor = Color.Gold;
-            lblMensaje.Location = new Point(52, 24);
+            lblMensaje.Location = new Point(50, 19);
+            lblMensaje.Margin = new Padding(2, 0, 2, 0);
             lblMensaje.Name = "lblMensaje";
-            lblMensaje.Size = new Size(299, 100);
+            lblMensaje.Size = new Size(199, 67);
             lblMensaje.TabIndex = 1;
             lblMensaje.Text = "Mensaje";
             lblMensaje.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // FormMensaje
             // 
-            AutoScaleDimensions = new SizeF(144F, 144F);
+            AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.Black;
-            ClientSize = new Size(400, 200);
+            ClientSize = new Size(298, 148);
             ControlBox = false;
             Controls.Add(lblMensaje);
             Controls.Add(btnOk);
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            Margin = new Padding(2, 2, 2, 2);
             MaximizeBox = false;
             Name = "FormMensaje";
             StartPosition = FormStartPosition.CenterScreen;

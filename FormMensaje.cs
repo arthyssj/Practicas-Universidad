@@ -27,5 +27,7 @@ namespace JuegoLaberinto
             sonidoOK.Play();
             this.Close();
         }
+
+       
     }
 }

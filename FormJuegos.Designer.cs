@@ -40,10 +40,10 @@
             // 
             // FormJuego
             // 
-            AutoScaleDimensions = new SizeF(144F, 144F);
+            AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(798, 564);
+            ClientSize = new Size(804, 581);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             KeyPreview = true;
             Margin = new Padding(2);
