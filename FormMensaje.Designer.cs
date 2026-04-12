@@ -41,10 +41,10 @@
             btnOk.FlatStyle = FlatStyle.Flat;
             btnOk.Font = new Font("Showcard Gothic", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnOk.ForeColor = Color.White;
-            btnOk.Location = new Point(116, 96);
+            btnOk.Location = new Point(123, 107);
             btnOk.Margin = new Padding(2);
             btnOk.Name = "btnOk";
-            btnOk.Size = new Size(67, 33);
+            btnOk.Size = new Size(96, 43);
             btnOk.TabIndex = 0;
             btnOk.Text = "OK";
             btnOk.UseVisualStyleBackColor = false;
@@ -55,7 +55,7 @@
             lblMensaje.Anchor = AnchorStyles.None;
             lblMensaje.Font = new Font("Showcard Gothic", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblMensaje.ForeColor = Color.Gold;
-            lblMensaje.Location = new Point(11, 19);
+            lblMensaje.Location = new Point(33, 30);
             lblMensaje.Margin = new Padding(2, 0, 2, 0);
             lblMensaje.Name = "lblMensaje";
             lblMensaje.Size = new Size(276, 75);
@@ -67,7 +67,7 @@
             // 
             AutoScaleMode = AutoScaleMode.None;
             BackColor = Color.Black;
-            ClientSize = new Size(298, 148);
+            ClientSize = new Size(342, 180);
             ControlBox = false;
             Controls.Add(lblMensaje);
             Controls.Add(btnOk);
