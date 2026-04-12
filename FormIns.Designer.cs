@@ -53,7 +53,7 @@
             btnClose.Font = new Font("Showcard Gothic", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnClose.ForeColor = Color.Transparent;
             btnClose.Location = new Point(147, 122);
-            btnClose.Margin = new Padding(2, 2, 2, 2);
+            btnClose.Margin = new Padding(2);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(104, 38);
             btnClose.TabIndex = 1;
@@ -71,7 +71,7 @@
             Controls.Add(lblIns);
             Controls.Add(btnClose);
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
-            Margin = new Padding(2, 2, 2, 2);
+            Margin = new Padding(2);
             MaximizeBox = false;
             Name = "FormIns";
             ShowIcon = false;

@@ -42,7 +42,7 @@
             btnOk.Font = new Font("Showcard Gothic", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnOk.ForeColor = Color.White;
             btnOk.Location = new Point(116, 96);
-            btnOk.Margin = new Padding(2, 2, 2, 2);
+            btnOk.Margin = new Padding(2);
             btnOk.Name = "btnOk";
             btnOk.Size = new Size(67, 33);
             btnOk.TabIndex = 0;
@@ -52,27 +52,27 @@
             // 
             // lblMensaje
             // 
+            lblMensaje.Anchor = AnchorStyles.None;
             lblMensaje.Font = new Font("Showcard Gothic", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblMensaje.ForeColor = Color.Gold;
             lblMensaje.Location = new Point(50, 19);
             lblMensaje.Margin = new Padding(2, 0, 2, 0);
             lblMensaje.Name = "lblMensaje";
-            lblMensaje.Size = new Size(199, 67);
+            lblMensaje.Size = new Size(199, 75);
             lblMensaje.TabIndex = 1;
             lblMensaje.Text = "Mensaje";
             lblMensaje.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // FormMensaje
             // 
-            AutoScaleDimensions = new SizeF(96F, 96F);
-            AutoScaleMode = AutoScaleMode.Dpi;
+            AutoScaleMode = AutoScaleMode.None;
             BackColor = Color.Black;
             ClientSize = new Size(298, 148);
             ControlBox = false;
             Controls.Add(lblMensaje);
             Controls.Add(btnOk);
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
-            Margin = new Padding(2, 2, 2, 2);
+            Margin = new Padding(2);
             MaximizeBox = false;
             Name = "FormMensaje";
             StartPosition = FormStartPosition.CenterScreen;

@@ -43,9 +43,9 @@
             btnIniciar.FlatStyle = FlatStyle.Flat;
             btnIniciar.Font = new Font("Showcard Gothic", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnIniciar.ForeColor = Color.Gold;
-            btnIniciar.Location = new Point(240, 94);
+            btnIniciar.Location = new Point(267, 138);
             btnIniciar.Name = "btnIniciar";
-            btnIniciar.Size = new Size(327, 98);
+            btnIniciar.Size = new Size(250, 80);
             btnIniciar.TabIndex = 1;
             btnIniciar.Text = "Iniciar Juego";
             btnIniciar.UseVisualStyleBackColor = false;
@@ -61,9 +61,9 @@
             btnSalir.FlatStyle = FlatStyle.Flat;
             btnSalir.Font = new Font("Showcard Gothic", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnSalir.ForeColor = Color.Transparent;
-            btnSalir.Location = new Point(240, 388);
+            btnSalir.Location = new Point(267, 342);
             btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(327, 98);
+            btnSalir.Size = new Size(250, 80);
             btnSalir.TabIndex = 3;
             btnSalir.Text = "Salir";
             btnSalir.UseVisualStyleBackColor = false;
@@ -79,9 +79,9 @@
             btnIns.FlatStyle = FlatStyle.Flat;
             btnIns.Font = new Font("Showcard Gothic", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnIns.ForeColor = Color.Transparent;
-            btnIns.Location = new Point(240, 241);
+            btnIns.Location = new Point(267, 240);
             btnIns.Name = "btnIns";
-            btnIns.Size = new Size(327, 98);
+            btnIns.Size = new Size(250, 80);
             btnIns.TabIndex = 2;
             btnIns.Text = "Instrucciones";
             btnIns.UseVisualStyleBackColor = false;
@@ -89,11 +89,10 @@
             // 
             // FormMenu
             // 
-            AutoScaleDimensions = new SizeF(96F, 96F);
-            AutoScaleMode = AutoScaleMode.Dpi;
+            AutoScaleMode = AutoScaleMode.None;
             BackgroundImage = Properties.Resources.fondoMenuV3;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(804, 581);
+            ClientSize = new Size(784, 561);
             Controls.Add(btnIns);
             Controls.Add(btnSalir);
             Controls.Add(btnIniciar);
